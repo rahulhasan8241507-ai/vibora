@@ -1,223 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vibora</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibora - Social Media</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-    body {
-      background: #f5f5f5;
-      color: #222;
-    }
+body{
+  background:#f3f4f6;
+  color:#222;
+  padding-bottom:75px;
+}
 
-    .app {
-      max-width: 500px;
-      margin: auto;
-      min-height: 100vh;
-      background: white;
-    }
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:white;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px #0001;
+}
 
-    header {
-      padding: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-      position: sticky;
-      top: 0;
-      background: white;
-    }
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  color:#7c3aed;
+}
 
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-    }
+.search{
+  font-size:22px;
+}
 
-    .search {
-      font-size: 22px;
-    }
+.page{
+  max-width:600px;
+  margin:auto;
+}
 
-    .stories {
-      display: flex;
-      gap: 14px;
-      padding: 15px;
-      overflow-x: auto;
-      border-bottom: 1px solid #eee;
-    }
+.stories{
+  background:white;
+  padding:14px;
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  margin-bottom:10px;
+}
 
-    .story {
-      min-width: 65px;
-      text-align: center;
-      font-size: 12px;
-    }
+.story{
+  min-width:65px;
+  text-align:center;
+  font-size:12px;
+}
 
-    .story img {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #7c4dff;
-      padding: 2px;
-    }
+.story img{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #8b5cf6;
+  padding:2px;
+}
 
-    .post {
-      border-bottom: 8px solid #f5f5f5;
-      padding-bottom: 15px;
-    }
+.card{
+  background:white;
+  margin-bottom:12px;
+  padding:14px;
+  box-shadow:0 1px 5px #0001;
+}
 
-    .user {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px;
-    }
+.user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
 
-    .user img {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-    }
+.avatar{
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  background:#8b5cf6;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
 
-    .post-content {
-      padding: 0 15px 12px;
-      line-height: 1.5;
-    }
+.username{
+  font-weight:bold;
+}
 
-    .post-image {
-      width: 100%;
-      display: block;
-    }
+.time{
+  color:#888;
+  font-size:12px;
+}
 
-    .actions {
-      display: flex;
-      justify-content: space-around;
-      padding: 12px;
-      font-size: 24px;
-    }
+.post-text{
+  margin-bottom:12px;
+  line-height:1.5;
+}
 
-    nav {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      max-width: 500px;
-      width: 100%;
-      background: white;
-      border-top: 1px solid #ddd;
-      display: flex;
-      justify-content: space-around;
-      padding: 12px 0;
-    }
+.post-img{
+  width:100%;
+  border-radius:10px;
+  max-height:450px;
+  object-fit:cover;
+}
 
-    nav button {
-      border: none;
-      background: none;
-      font-size: 13px;
-    }
+.actions{
+  display:flex;
+  justify-content:space-around;
+  padding-top:12px;
+  margin-top:10px;
+  border-top:1px solid #eee;
+}
 
-    nav span {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 3px;
-    }
+.actions button{
+  border:0;
+  background:none;
+  font-size:15px;
+  cursor:pointer;
+}
 
-    .wallet {
-      margin: 15px;
-      padding: 20px;
-      border-radius: 15px;
-      background: #eee;
-    }
+.actions button:active{
+  transform:scale(.95);
+}
 
-    .wallet h2 {
-      margin-bottom: 8px;
-    }
-  </style>
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:68px;
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  box-shadow:0 -2px 10px #0002;
+  z-index:20;
+}
+
+.bottom button{
+  border:0;
+  background:none;
+  font-size:12px;
+  color:#555;
+}
+
+.bottom .icon{
+  display:block;
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+.bottom button.active{
+  color:#7c3aed;
+  font-weight:bold;
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.title{
+  padding:18px 15px;
+  font-size:23px;
+  font-weight:bold;
+}
+
+.short{
+  background:#111;
+  color:white;
+  min-height:500px;
+  margin-bottom:10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:20px;
+  border-radius:10px;
+  position:relative;
+  overflow:hidden;
+}
+
+.short-bg{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(140deg,#7c3aed,#ec4899,#111);
+  opacity:.9;
+}
+
+.short-content{
+  position:relative;
+  z-index:2;
+}
+
+.short h2{
+  margin-bottom:8px;
+}
+
+.short p{
+  color:#eee;
+}
+
+.upload-box{
+  background:white;
+  margin:15px;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.upload-box input{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+}
+
+.upload-btn{
+  background:#7c3aed;
+  color:white;
+  border:0;
+  padding:13px 25px;
+  border-radius:25px;
+  font-weight:bold;
+}
+
+.preview{
+  max-width:100%;
+  margin-top:15px;
+  border-radius:10px;
+}
+
+.chat{
+  background:white;
+  margin:8px 15px;
+  padding:15px;
+  border-radius:12px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.chat-info{
+  flex:1;
+}
+
+.message{
+  color:#777;
+  font-size:13px;
+  margin-top:4px;
+}
+
+.profile-head{
+  background:linear-gradient(135deg,#7c3aed,#ec4899);
+  color:white;
+  text-align:center;
+  padding:35px 20px;
+}
+
+.profile-avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:white;
+  color:#7c3aed;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  font-weight:bold;
+  margin:auto;
+  border:4px solid white;
+}
+
+.stats{
+  display:flex;
+  justify-content:space-around;
+  background:white;
+  padding:18px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:20px;
+}
+
+.wallet{
+  margin:15px;
+  background:linear-gradient(135deg,#111827,#374151);
+  color:white;
+  padding:25px;
+  border-radius:15px;
+}
+
+.balance{
+  font-size:35px;
+  font-weight:bold;
+  margin:10px 0 20px;
+}
+
+.wallet button{
+  border:0;
+  background:#8b5cf6;
+  color:white;
+  padding:12px 20px;
+  border-radius:25px;
+}
+
+.login-note{
+  background:#fff7ed;
+  margin:15px;
+  padding:15px;
+  border-radius:10px;
+  color:#9a3412;
+  font-size:14px;
+}
+</style>
 </head>
 
 <body>
 
-<div class="app">
+<header>
+  <div class="logo">Vibora</div>
+  <div class="search">🔍</div>
+</header>
 
-  <header>
-    <div class="logo">Vibora</div>
-    <div class="search">🔍</div>
-  </header>
+<div class="page">
 
-  <div class="stories">
-    <div class="story">
-      <img src="https://i.pravatar.cc/100?img=1">
-      <p>You</p>
-    </div>
+<!-- HOME -->
+<section id="home" class="section active">
 
-    <div class="story">
-      <img src="https://i.pravatar.cc/100?img=2">
-      <p>Sarah</p>
-    </div>
+<div class="stories">
+  <div class="story">
+    <img src="https://i.pravatar.cc/100?img=12">
+    <div>You</div>
+  </div>
+  <div class="story">
+    <img src="https://i.pravatar.cc/100?img=5">
+    <div>Sarah</div>
+  </div>
+  <div class="story">
+    <img src="https://i.pravatar.cc/100?img=8">
+    <div>John</div>
+  </div>
+  <div class="story">
+    <img src="https://i.pravatar.cc/100?img=9">
+    <div>Maria</div>
+  </div>
+  <div class="story">
+    <img src="https://i.pravatar.cc/100?img=11">
+    <div>David</div>
+  </div>
+</div>
 
-    <div class="story">
-      <img src="https://i.pravatar.cc/100?img=3">
-      <p>John</p>
-    </div>
-
-    <div class="story">
-      <img src="https://i.pravatar.cc/100?img=4">
-      <p>Maria</p>
+<div class="card">
+  <div class="user">
+    <div class="avatar">V</div>
+    <div>
+      <div class="username">Vibora Creator</div>
+      <div class="time">Just now</div>
     </div>
   </div>
 
-  <div class="post">
-
-    <div class="user">
-      <img src="https://i.pravatar.cc/100?img=5">
-      <div>
-        <strong>Vibora Creator</strong>
-        <p>Just now</p>
-      </div>
-    </div>
-
-    <div class="post-content">
-      Welcome to Vibora! 🎉
-      <br>
-      Share your moments, connect with people and support your favorite creators.
-    </div>
-
-    <img
-      class="post-image"
-      src="https://picsum.photos/500/350"
-      alt="Vibora post"
-    >
-
-    <div class="actions">
-      <span>❤️</span>
-      <span>💬</span>
-      <span>🔄</span>
-      <span>📤</span>
-    </div>
-
+  <div class="post-text">
+    Welcome to Vibora! 🎉<br>
+    Share your moments, connect with people and support your favorite creators.
   </div>
 
-  <div class="wallet">
-    <h2>💰 Creator Wallet</h2>
-    <p>Balance: <strong>$0.00</strong></p>
+  <div class="actions">
+    <button onclick="likePost(this)">❤️ Like</button>
+    <button onclick="alert('Comments coming soon!')">💬 Comment</button>
+    <button onclick="sharePost()">🔄 Share</button>
   </div>
+</div>
+
+<div class="card">
+  <div class="user">
+    <div class="avatar">S</div>
+    <div>
+      <div class="username">Sarah</div>
+      <div class="time">10 min ago</div>
+    </div>
+  </div>
+
+  <div class="post-text">
+    Beautiful day on Vibora! 🌸✨
+  </div>
+
+  <img class="post-img"
+       src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=80">
+
+  <div class="actions">
+    <button onclick="likePost(this)">❤️ Like</button>
+    <button onclick="alert('Comments coming soon!')">💬 Comment</button>
+    <button onclick="sharePost()">🔄 Share</button>
+  </div>
+</div>
+
+</section>
+
+<!-- SHORTS -->
+<section id="shorts" class="section">
+<div class="title">🎬 Vibora Shorts</div>
+
+<div class="short">
+  <div class="short-bg"></div>
+  <div class="short-content">
+    <h2>Welcome to Vibora Shorts 🎬</h2>
+    <p>Watch short videos and discover new creators.</p>
+    <br>
+    <button onclick="likePost(this)">❤️ Like</button>
+  </div>
+</div>
+
+<div class="short">
+  <div class="short-bg"></div>
+  <div class="short-content">
+    <h2>Share your creativity ✨</h2>
+    <p>Upload your own videos and grow your audience.</p>
+  </div>
+</div>
+</section>
+
+<!-- UPLOAD -->
+<section id="upload" class="section">
+<div class="title">➕ Create Post</div>
+
+<div class="upload-box">
+  <h2>Share something</h2>
+  <p style="margin:10px;color:#777">
+    Choose a photo or video from your phone.
+  </p>
+
+  <input type="file" id="mediaInput" accept="image/*,video/*"
+         onchange="previewMedia(event)">
+
+  <div id="previewArea"></div>
+
+  <br>
+
+  <button class="upload-btn" onclick="createPost()">
+    Publish Post
+  </button>
+</div>
+
+<div class="login-note">
+  ℹ️ This version is a front-end demo. Real accounts, permanent uploads,
+  chat server and creator payments will be connected later.
+</div>
+</section>
+
+<!-- CHAT -->
+<section id="chat" class="section">
+<div class="title">💬 Messages</div>
+
+<div class="chat" onclick="openChat('Sarah')">
+  <div class="avatar">S</div>
+  <div class="chat-info">
+    <b>Sarah</b>
+    <div class="message">Hey! Welcome to Vibora 👋</div>
+  </div>
+  <span>›</span>
+</div>
+
+<div class="chat" onclick="openChat('John')">
+  <div class="avatar">J</div>
+  <div class="chat-info">
+    <b>John</b>
+    <div class="message">Nice post!</div>
+  </div>
+  <span>›</span>
+</div>
+
+<div class="chat" onclick="openChat('Maria')">
+  <div class="avatar">M</div>
+  <div class="chat-info">
+    <b>Maria</b>
+    <div class="message">Hello 😊</div>
+  </div>
+  <span>›</span>
+</div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile" class="section">
+
+<div class="profile-head">
+  <div class="profile-avatar">R</div>
+  <h2 style="margin-top:10px">Rahul</h2>
+  <p>@rahul</p>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <strong>0</strong>
+    Posts
+  </div>
+  <div class="stat">
+    <strong>0</strong>
+    Followers
+  </div>
+  <div class="stat">
+    <strong>0</strong>
+    Following
+  </div>
+</div>
+
+<div class="wallet">
+  <div>💰 Creator Wallet</div>
+  <div class="balance">$0.00</div>
+  <p>Creator earnings will appear here.</p>
+  <br>
+  <button onclick="alert('Wallet withdrawal will be connected later.')">
+    Withdraw
+  </button>
+</div>
+
+<div class="login-note">
+  🔐 Account login and secure creator payments will be added in the next stage.
+</div>
+
+</section>
 
 </div>
 
-<nav>
-  <button><span>🏠</span>Home</button>
-  <button><span>🎬</span>Shorts</button>
-  <button><span>➕</span>Upload</button>
-  <button><span>💬</span>Chat</button>
-  <button><span>👤</span>Profile</button>
+<!-- BOTTOM NAVIGATION -->
+<nav class="bottom">
+
+<button class="active" onclick="showSection('home',this)">
+  <span class="icon">🏠</span>Home
+</button>
+
+<button onclick="showSection('shorts',this)">
+  <span class="icon">🎬</span>Shorts
+</button>
+
+<button onclick="showSection('upload',this)">
+  <span class="icon">➕</span>Upload
+</button>
+
+<button onclick="showSection('chat',this)">
+  <span class="icon">💬</span>Chat
+</button>
+
+<button onclick="showSection('profile',this)">
+  <span class="icon">👤</span>Profile
+</button>
+
 </nav>
+
+<script>
+
+function showSection(id,button){
+
+  document.querySelectorAll('.section')
+    .forEach(section => section.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('.bottom button')
+    .forEach(btn => btn.classList.remove('active'));
+
+  button.classList.add('active');
+
+  window.scrollTo(0,0);
+}
+
+function likePost(button){
+
+  if(button.dataset.liked === "yes"){
+    button.innerHTML = "❤️ Like";
+    button.dataset.liked = "no";
+  }else{
+    button.innerHTML = "❤️ Liked";
+    button.dataset.liked = "yes";
+  }
+}
+
+function sharePost(){
+
+  if(navigator.share){
+    navigator.share({
+      title:"Vibora",
+      text:"Check out Vibora!"
+    });
+  }else{
+    alert("Vibora post is ready to share!");
+  }
+}
+
+function previewMedia(event){
+
+  const file = event.target.files[0];
+  const area = document.getElementById("previewArea");
+
+  area.innerHTML = "";
+
+  if(!file) return;
+
+  const url = URL.createObjectURL(file);
+
+  if(file.type.startsWith("image/")){
+
+    const img = document.createElement("img");
+    img.src = url;
+    img.className = "preview";
+    area.appendChild(img);
+
+  }else if(file.type.startsWith("video/")){
+
+    const video = document.createElement("video");
+    video.src = url;
+    video.controls = true;
+    video.className = "preview";
+    area.appendChild(video);
+
+  }
+
+}
+
+function createPost(){
+
+  const file = document.getElementById("mediaInput").files[0];
+
+  if(!file){
+    alert("Please choose a photo or video first.");
+    return;
+  }
+
+  alert("Your post is ready! Real server upload will be connected in the next stage.");
+
+}
+
+function openChat(name){
+
+  alert("Chat with " + name + " will be connected to the real messaging system in the next stage.");
+
+}
+
+</script>
 
 </body>
 </html>
+  
+    
