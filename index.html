@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibora</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    .app {
+      max-width: 500px;
+      margin: auto;
+      min-height: 100vh;
+      background: white;
+    }
+
+    header {
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      background: white;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .search {
+      font-size: 22px;
+    }
+
+    .stories {
+      display: flex;
+      gap: 14px;
+      padding: 15px;
+      overflow-x: auto;
+      border-bottom: 1px solid #eee;
+    }
+
+    .story {
+      min-width: 65px;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .story img {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #7c4dff;
+      padding: 2px;
+    }
+
+    .post {
+      border-bottom: 8px solid #f5f5f5;
+      padding-bottom: 15px;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+    }
+
+    .user img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+    }
+
+    .post-content {
+      padding: 0 15px 12px;
+      line-height: 1.5;
+    }
+
+    .post-image {
+      width: 100%;
+      display: block;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      padding: 12px;
+      font-size: 24px;
+    }
+
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 500px;
+      width: 100%;
+      background: white;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+    }
+
+    nav button {
+      border: none;
+      background: none;
+      font-size: 13px;
+    }
+
+    nav span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 3px;
+    }
+
+    .wallet {
+      margin: 15px;
+      padding: 20px;
+      border-radius: 15px;
+      background: #eee;
+    }
+
+    .wallet h2 {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header>
+    <div class="logo">Vibora</div>
+    <div class="search">🔍</div>
+  </header>
+
+  <div class="stories">
+    <div class="story">
+      <img src="https://i.pravatar.cc/100?img=1">
+      <p>You</p>
+    </div>
+
+    <div class="story">
+      <img src="https://i.pravatar.cc/100?img=2">
+      <p>Sarah</p>
+    </div>
+
+    <div class="story">
+      <img src="https://i.pravatar.cc/100?img=3">
+      <p>John</p>
+    </div>
+
+    <div class="story">
+      <img src="https://i.pravatar.cc/100?img=4">
+      <p>Maria</p>
+    </div>
+  </div>
+
+  <div class="post">
+
+    <div class="user">
+      <img src="https://i.pravatar.cc/100?img=5">
+      <div>
+        <strong>Vibora Creator</strong>
+        <p>Just now</p>
+      </div>
+    </div>
+
+    <div class="post-content">
+      Welcome to Vibora! 🎉
+      <br>
+      Share your moments, connect with people and support your favorite creators.
+    </div>
+
+    <img
+      class="post-image"
+      src="https://picsum.photos/500/350"
+      alt="Vibora post"
+    >
+
+    <div class="actions">
+      <span>❤️</span>
+      <span>💬</span>
+      <span>🔄</span>
+      <span>📤</span>
+    </div>
+
+  </div>
+
+  <div class="wallet">
+    <h2>💰 Creator Wallet</h2>
+    <p>Balance: <strong>$0.00</strong></p>
+  </div>
+
+</div>
+
+<nav>
+  <button><span>🏠</span>Home</button>
+  <button><span>🎬</span>Shorts</button>
+  <button><span>➕</span>Upload</button>
+  <button><span>💬</span>Chat</button>
+  <button><span>👤</span>Profile</button>
+</nav>
+
+</body>
+</html>
